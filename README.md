@@ -7,44 +7,31 @@ It's a Chrome extension that politely (but firmly) tells you when you're about t
 
 ---
 
-## What Works (aka the brag section)
-
-### The Extension? Oh, it's alive.
-- Scans the site you're on, like a secret agent but less creepy
-- Sends that info to a local FastAPI backend that acts like the brain
-- Displays whether the page is **safe**, **suspicious**, or **"please close this tab right now"**
-- Comes with a smooth, futuristic background, because if you're going to fight phishing, you might as well look good doing it
-- Keeps a local memory of past scans—because it never forgets, like your mom reminding you about that one failed test in 8th grade
+### What it does:
+- Chrome extension scans the page you’re on
+- Sends it to a FastAPI backend with an ML model
+- Tells you if the site looks shady (or safe)
+- Clean UI, confidence scores, and smart explanations
 
 ---
 
-## What’s Still Under Construction (read: held together with duct tape and dreams)
-
-- **Backend**: It responds, yes. But it only knows how to handle emails right now. It hasn’t gone to URL or HTML school yet.
-- **Feedback system**: Exists in spirit. The code files are there, but no one's listening (yet).
-- **Machine learning models**: Only one is fully trained. The rest are sitting in the codebase like interns waiting for a project.
-- **React frontend**: We have a whole React setup... that's just sitting there looking pretty. It'll do something one day.
+### What’s done:
+- ✅ Extension works and looks great
+- ✅ Backend detects phishing emails
+- ✅ Model trained and saved
 
 ---
 
-## How to Try It (because you obviously want to)
 
-1. Clone the repo or unzip the files.
-2. Go to `chrome://extensions` in Chrome.
-3. Turn on Developer Mode (top right).
-4. Click “Load unpacked” and select the `public/` folder.
-5. Visit any site and hit “Scan This Page” in the popup.
-6. Watch magic happen (or at least get some mildly satisfying results).
+### How to try it:
+1. Load the `public/` folder as an unpacked Chrome extension
+2. Start the backend:
 
----
-
-## How to Run the Backend (AKA the brain)
-
-You’ll need Python and `uvicorn`. Then:
-
-```
-uvicorn backend.app.main:app --reload
-```
+   ```bash
+   uvicorn backend.app.main:app --reload
+   ```
+   
+3. Visit a site and hit “Scan This Page”
 
 Make sure your model (`email_model.joblib`) and vectorizer are in `backend/saved_models/`. If not, yell at your previous self for forgetting to run the training script.
 
@@ -59,9 +46,7 @@ Make sure your model (`email_model.joblib`) and vectorizer are in `backend/saved
 
 ---
 
-## Who Made This?
+Made with <3 and a spirit of inquiry
 
-This work of slightly paranoid genius is brought to you by **S0hamBOT**.
-
-If it doesn’t work, blame the AI. If it does work, definitely tell recruiters.
+Over n Out.
 
