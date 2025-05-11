@@ -1,5 +1,5 @@
 # """
-# PhishSense API
+# PhishingSensor API
 # A FastAPI backend for phishing detection and model serving
 # """
 
@@ -19,7 +19,7 @@
 
 # # Initialize FastAPI app
 # app = FastAPI(
-#     title="PhishSense API",
+#     title="PhishingSensor API",
 #     description="API for detecting phishing websites using multi-modal ML analysis",
 #     version="1.0.0"
 # )
@@ -66,7 +66,7 @@
 
 # @app.get("/")
 # async def root():
-#     return {"message": "PhishSense API is running"}
+#     return {"message": "PhishingSensor API is running"}
 
 # @app.get("/health")
 # async def health_check():
@@ -178,10 +178,24 @@ def predict_email(data: EmailRequest):
     # Format response
     label = "Phishing" if pred == 1 else "Safe"
     confidence = round(float(proba[pred]), 3)
-    explanation = "This email was flagged as phishing due to risky wording patterns and statistical signals."
+    # Generate explanation based on prediction and confidence
+    if pred == 1:
+        if confidence > 0.9:
+            explanation = "This email strongly resembles known phishing patterns with high-risk vocabulary."
+        elif confidence > 0.7:
+            explanation = "This email contains several suspicious indicators, such as urgency or login prompts."
+        else:
+            explanation = "This email has mild phishing characteristics. Caution is advised."
+    else:
+        if confidence > 0.95:
+            explanation = "No phishing indicators detected. This email is highly likely to be safe."
+        else:
+            explanation = "This email appears safe but shares some similarities with phishing emails."
+
 
     return {
         "label": label,
         "confidence": confidence,
         "explanation": explanation
     }
+

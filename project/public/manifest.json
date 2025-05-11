@@ -1,17 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "PhishSense - Phishing Detector",
-  "version": "1.0",
-  "description": "Detect phishing content in real-time using AI.",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["http://localhost:8000/*"],
+  "name": "PhishingSensor - Advanced Phishing Detector",
+  "version": "1.0.0",
+  "description": "Detect phishing attempts in real-time using an AI-powered FastAPI backend.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
-    }
+    },
+    "default_title": "PhishingSensor"
   },
   "background": {
     "service_worker": "background.js"
@@ -19,7 +27,18 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
     }
-  ]
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "author": "Soham Jadhav",
+  "homepage_url": "https://yourwebsite.com/PhishingSensor",
+  "incognito": "split",
+  "offline_enabled": true
 }

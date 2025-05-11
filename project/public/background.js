@@ -1,3 +1,3 @@
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("PhishSense is active.");
+  console.log("PhishingSensor extension installed.");
 });

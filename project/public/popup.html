@@ -1,13 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>PhishingSensor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishingSensor - AI Phishing Detector</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-  <h2>PhishSense Scanner</h2>
-  <button id="scanBtn">Scan This Page</button>
-  <div id="result"></div>
+  <div class="header">
+    <img src="icons/icon48.png" alt="PhishingSensor Logo" class="logo">
+    <h2>PhishingSensor</h2>
+    <span class="version">v1.0</span>
+  </div>
+
+  <div class="card">
+    <div class="status">
+      <div class="status-indicator" id="statusIndicator"></div>
+      <span class="status-text" id="statusText">Waiting for scan...</span>
+    </div>
+    <p id="currentUrl" style="font-size: 13px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
+    
+    <button id="scanBtn" class="primary-button">
+      <i class="fa-solid fa-shield-halved button-icon"></i>
+      Scan This Page
+    </button>
+  </div>
+
+  <div id="result" style="display: none;">
+    <div class="result-header" id="resultHeader">
+      <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i>
+      <span id="resultTitle">Analysis Results</span>
+    </div>
+    <div class="result-content">
+      <div class="metric">
+        <span class="metric-name">Risk Level</span>
+        <span class="metric-value" id="riskLevel">-</span>
+      </div>
+      
+      <div class="metric">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <span class="metric-name">Confidence</span>
+          <span class="metric-value" id="confidence">-</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="confidenceFill" style="width: 0%;"></div>
+        </div>
+      </div>
+      
+      <div class="explanation">
+        <div class="explanation-title">Analysis Explanation</div>
+        <p id="explanation">Waiting for scan results...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    PhishingSensor © 2025 • Powered by AI
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
