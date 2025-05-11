@@ -1,52 +1,117 @@
 
-# PhishingSensor
+# PhishingSensor: A Tale of AI, Suspicion, and Browser Bravery
 
-Welcome to **PhishingSensor**, where your browser gets a sixth sense for spotting shady stuff on the internet.
-
-It's a Chrome extension that politely (but firmly) tells you when you're about to step on a digital landmine—aka a phishing scam. Backed by AI, wrapped in a snazzy interface, and powered by a slightly over-caffeinated developer.
+Welcome to **PhishingSensor**, where a humble idea turned into a browser’s personal bodyguard. This is the story of how we trained an AI, built a real-time scanner, and wrapped it all in a futuristic extension. If you’re here to know *how it works* and *what we built*, read on.
 
 ---
 
-### What it does:
-- Chrome extension scans the page you’re on
-- Sends it to a FastAPI backend with an ML model
-- Tells you if the site looks shady (or safe)
-- Clean UI, confidence scores, and smart explanations
+## 🪜 Step 1: Training the AI Brain
+
+We started with a dataset of phishing and legitimate emails. Not URLs, not fake login pages — just the written word. The goal: teach our model to recognize the language of deception.
+
+- **Model:** Multinomial Naive Bayes
+- **Features:** TF-IDF (because word frequency matters)
+- **Tooling:** Python, Scikit-learn
+- **Accuracy:** ~90% on validation data
+
+![Extension Popup](screenshots/model-and-vectorizer-saved.png)
+
+
+Once trained, we saved:
+```
+📁 saved_models/
+├── email_model.joblib       # The trained model
+└── vectorizer.joblib        # The TF-IDF transformer
+```
+
+This model is the decision-maker behind our scanner.
 
 ---
 
-### What’s done:
-- ✅ Extension works and looks great
-- ✅ Backend detects phishing emails
-- ✅ Model trained and saved
+## 🧠 Step 2: Giving It a Voice — The FastAPI Backend
+
+An AI model sitting in a `.joblib` file doesn’t do much. So we built a **FastAPI backend**:
+
+- Endpoint: `POST /predict/email`
+- Input: Raw email/page text
+- Output: Label (Safe or Phishing), Confidence score, and a dynamic explanation
+
+![Extension Popup](screenshots/2.fast-api.png)
+![Extension Popup](screenshots/3.fast-api.png)
+![Extension Popup](screenshots/4.fast-api.png)
+![Extension Popup](screenshots/5.fast-api.png)
+
+We even made the backend smart enough to say things like:
+> “This email strongly resembles known phishing patterns with high-risk vocabulary.”
+
+That’s right — our AI explains itself.
 
 ---
 
+## 🔧 Step 3: Building the Chrome Extension
 
-### How to try it:
-1. Load the `public/` folder as an unpacked Chrome extension
-2. Start the backend:
+Next, we wrapped it in something usable — a **Chrome extension** that lets users scan the current webpage with one click.
 
-   ```bash
-   uvicorn backend.app.main:app --reload
-   ```
-   
-3. Visit a site and hit “Scan This Page”
-
-Make sure your model (`email_model.joblib`) and vectorizer are in `backend/saved_models/`. If not, yell at your previous self for forgetting to run the training script.
+- Reads the visible page text using `chrome.scripting.executeScript`
+- Sends it to our backend for analysis
+- Shows the result: a risk level, confidence bar, and an explanation
+- Saves previous scans with `chrome.storage.local`
 
 ---
 
-## What's Next?
+## 🖼️ Step 4: Adding Polish
 
-- Smarter phishing detection using page structure and URLs
-- Feedback loop (because your opinion matters, kind of)
-- Cloud deployment so your laptop doesn’t have to shoulder the entire internet
-- Full React UI so this project can truly shine like it deserves to
+Once it worked, we made it look good:
+
+- Stylish UI with custom CSS
+
+![Extension Popup](screenshots/6.initial-page.png)
+
+- Status indicators: Safe, Suspicious, or Phishing
+- Confidence meter (as a progress bar)
+
+![Extension Popup](screenshots/7.runned.png)
 
 ---
 
-Made with <3 and a spirit of inquiry
+## 💡 What You Can Try Today
+
+- Load the extension from the `/public/` folder in Chrome
+- Start the FastAPI backend:
+  
+  ```bash
+  uvicorn backend.app.main:app --reload
+  ```
+  
+- Click “Scan This Page” on any site (just not `chrome://` pages — Chrome doesn’t allow that)
+- Get an instant, AI-powered risk report
+
+---
+
+## 🧪 What’s Working
+- Extension UI: ✅
+- Email model & prediction: ✅
+- Real-time scan & response: ✅
+- FastAPI Swagger UI: ✅
+
+---
+
+## 🛠️ What’s Coming Soon
+- URL + HTML model integration
+- Feedback collection and online learning
+- Full-featured React dashboard (it’s scaffolded but sleepy)
+- Public deployment of the backend
+
+---
+
+## 🤝 Why This Exists
+
+Phishing is subtle. Scammers use psychology, not just shady URLs. This tool aims to detect those tricks **before you click**, using AI that understands the language of manipulation.
+
+It’s not perfect — yet — but it’s learning fast.
+
+---
+
+Made with <3 and a mild distrust of emails that say "URGENT: Verify your account now."
 
 Over n Out.
-
