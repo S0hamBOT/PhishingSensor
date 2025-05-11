@@ -1,80 +1,146 @@
-/* PhishSense Content CSS */
+/* PhishingSensor Content CSS - Enhanced Professional Version */
 
-/* Animation for the warning banner */
-@keyframes phishsense-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+/* Animation for warning banner transitions */
+@keyframes PhishingSensor-slidein {
+  from {
+    transform: translateY(-100%);
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  to {
+    transform: translateY(0);
   }
 }
 
-/* Custom styling for page elements */
-.phishsense-highlight {
+@keyframes PhishingSensor-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes PhishingSensor-glow {
+  0% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.6); }
+  50% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.6); }
+}
+
+/* Custom styling for highlighted elements */
+.PhishingSensor-highlight {
   border: 2px solid #F59E0B !important;
   box-shadow: 0 0 5px rgba(245, 158, 11, 0.5) !important;
   transition: all 0.3s ease !important;
+  position: relative !important;
 }
 
-.phishsense-dangerous-form {
+.PhishingSensor-highlight:hover {
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8) !important;
+}
+
+.PhishingSensor-dangerous-form {
   border: 2px solid #DC2626 !important;
   box-shadow: 0 0 8px rgba(220, 38, 38, 0.6) !important;
-  animation: phishsense-pulse 2s infinite !important;
+  animation: PhishingSensor-pulse 2s infinite !important;
+  border-radius: 4px !important;
+  padding: 8px !important;
+  position: relative !important;
 }
 
-/* Tooltip styles */
-.phishsense-tooltip {
-  position: relative;
-  display: inline-block;
+.PhishingSensor-dangerous-form::before {
+  content: "⚠️ Suspicious Form";
+  display: block;
+  background-color: #DC2626;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px 3px 0 0;
+  margin: -8px -8px 8px -8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.phishsense-tooltip .phishsense-tooltip-text {
+/* Enhanced tooltip styles */
+.PhishingSensor-tooltip {
+  position: relative !important;
+  display: inline-block !important;
+}
+
+.PhishingSensor-tooltip .PhishingSensor-tooltip-text {
   visibility: hidden;
-  width: 220px;
+  width: 250px;
   background-color: rgba(17, 24, 39, 0.95);
   color: #fff;
-  text-align: center;
+  text-align: left;
   border-radius: 6px;
-  padding: 8px;
+  padding: 10px;
   position: absolute;
   z-index: 9999999;
   bottom: 125%;
   left: 50%;
-  margin-left: -110px;
+  margin-left: -125px;
   opacity: 0;
-  transition: opacity 0.3s;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.4;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
   pointer-events: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border-left: 4px solid #F59E0B;
 }
 
-.phishsense-tooltip .phishsense-tooltip-text::after {
+.PhishingSensor-tooltip .PhishingSensor-tooltip-text::before {
+  content: "⚠️ PhishingSensor Alert";
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #F59E0B;
+}
+
+.PhishingSensor-tooltip .PhishingSensor-tooltip-text::after {
   content: "";
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
+  margin-left: -8px;
+  border-width: 8px;
   border-style: solid;
   border-color: rgba(17, 24, 39, 0.95) transparent transparent transparent;
 }
 
-.phishsense-tooltip:hover .phishsense-tooltip-text {
+.PhishingSensor-tooltip:hover .PhishingSensor-tooltip-text {
   visibility: visible;
   opacity: 1;
+  transform: translateY(-5px);
 }
 
 /* Warning banner styles (additional to inline styles) */
-#phishsense-warning {
+#PhishingSensor-warning {
   transition: all 0.3s ease;
+  animation: PhishingSensor-slidein 0.5s ease-out;
 }
 
-#phishsense-warning button:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
+#PhishingSensor-warning button {
+  transition: all 0.2s ease;
+}
+
+/* Ensure PhishingSensor elements remain visible regardless of page CSS */
+#PhishingSensor-warning, 
+.PhishingSensor-tooltip-text,
+.PhishingSensor-highlight,
+.PhishingSensor-dangerous-form {
+  font-size: 14px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  text-transform: none !important;
+}
+
+/* Fix for potential dark mode issues */
+#PhishingSensor-warning * {
+  color: inherit !important;
 }
