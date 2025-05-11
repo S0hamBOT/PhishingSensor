@@ -1,42 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "PhishSense",
-  "version": "1.0.0",
-  "description": "Real-time phishing detection with explainable AI and user feedback learning",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
+  "name": "PhishSense - Phishing Detector",
+  "version": "1.0",
+  "description": "Detect phishing content in real-time using AI.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["http://localhost:8000/*"],
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
-    },
-    "default_title": "PhishSense"
+    }
   },
-  "permissions": [
-    "activeTab",
-    "storage",
-    "scripting",
-    "webNavigation"
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
-  ],
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["content.js"],
-      "css": ["content.css"],
-      "run_at": "document_end"
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
     }
   ]
 }
