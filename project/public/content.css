@@ -1,0 +1,80 @@
+/* PhishSense Content CSS */
+
+/* Animation for the warning banner */
+@keyframes phishsense-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+/* Custom styling for page elements */
+.phishsense-highlight {
+  border: 2px solid #F59E0B !important;
+  box-shadow: 0 0 5px rgba(245, 158, 11, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+
+.phishsense-dangerous-form {
+  border: 2px solid #DC2626 !important;
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.6) !important;
+  animation: phishsense-pulse 2s infinite !important;
+}
+
+/* Tooltip styles */
+.phishsense-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.phishsense-tooltip .phishsense-tooltip-text {
+  visibility: hidden;
+  width: 220px;
+  background-color: rgba(17, 24, 39, 0.95);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 9999999;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -110px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.phishsense-tooltip .phishsense-tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(17, 24, 39, 0.95) transparent transparent transparent;
+}
+
+.phishsense-tooltip:hover .phishsense-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Warning banner styles (additional to inline styles) */
+#phishsense-warning {
+  transition: all 0.3s ease;
+}
+
+#phishsense-warning button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
