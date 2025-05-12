@@ -1,7 +1,7 @@
 
-# PhishingSensor: A Tale of AI, Suspicion, and Browser Bravery
+# PhishingSensor - Chrome Extension for capturing phishing mails
 
-Welcome to **PhishingSensor**, where a humble idea turned into a browser’s personal bodyguard. This is the story of how we trained an AI, built a real-time scanner, and wrapped it all in a futuristic extension. If you’re here to know *how it works* and *what we built*, read on.
+Welcome to **PhishingSensor**, where a humble idea turned into a browser’s personal bodyguard. This is the story of how we(me & AI Bots) trained an AI, built a real-time scanner, and wrapped it all in a futuristic extension. If you’re here to know *how it works* and *what we built*, read on.
 
 ---
 
@@ -65,12 +65,13 @@ Once it worked, we made it look good:
 
 - Stylish UI with custom CSS
 
-![Extension Popup](screenshots/6.initial-page.png)
+![Extension Popup](screenshots/initial-page.png)
 
 - Status indicators: Safe, Suspicious, or Phishing
 - Confidence meter (as a progress bar)
 
-![Extension Popup](screenshots/7.runned.png)
+![Extension Popup](screenshots/runned-1.png)
+![Extension Popup](screenshots/8.runned.png)
 
 ---
 
